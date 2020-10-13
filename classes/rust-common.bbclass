@@ -4,9 +4,11 @@ FILES_${PN} += "${rustlibdir}/*.so"
 FILES_${PN}-dev += "${rustlibdir}/*.rlib ${rustlibdir}/*.rmeta"
 FILES_${PN}-dbg += "${rustlibdir}/.debug"
 
+TARGET_CPU = "${@['', '-C target-cpu=e5500 '][d.getVar('HOST_SYS') == 'powerpc64-poky-linux']}"
+
 RUSTLIB = "-L ${STAGING_LIBDIR}/rust"
 RUST_DEBUG_REMAP = "--remap-path-prefix=${WORKDIR}=/usr/src/debug/${PN}/${EXTENDPE}${PV}-${PR}"
-RUSTFLAGS += "${RUSTLIB} ${RUST_DEBUG_REMAP}"
+RUSTFLAGS += "${TARGET_CPU}${RUSTLIB} ${RUST_DEBUG_REMAP}"
 RUSTLIB_DEP ?= "libstd-rs"
 RUST_TARGET_PATH = "${STAGING_LIBDIR_NATIVE}/rustlib"
 RUST_PANIC_STRATEGY ?= "unwind"

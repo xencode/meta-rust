@@ -226,6 +226,22 @@ TARGET_POINTER_WIDTH[powerpc] = "32"
 TARGET_C_INT_WIDTH[powerpc] = "32"
 MAX_ATOMIC_WIDTH[powerpc] = "32"
 
+## powerpc64-unknown-linux-{gnu, musl}
+DATA_LAYOUT[powerpc64] = "E-m:e-i64:64-n32:64"
+LLVM_TARGET[powerpc64] = "${RUST_TARGET_SYS}"
+TARGET_ENDIAN[powerpc64] = "big"
+TARGET_POINTER_WIDTH[powerpc64] = "64"
+TARGET_C_INT_WIDTH[powerpc64] = "32"
+MAX_ATOMIC_WIDTH[powerpc64] = "64"
+
+## e5500-unknown-linux-{gnu, musl}
+DATA_LAYOUT[e5500] = "E-m:e-i64:64-n32:64"
+LLVM_TARGET[e5500] = "${RUST_TARGET_SYS}"
+TARGET_ENDIAN[e5500] = "big"
+TARGET_POINTER_WIDTH[e5500] = "64"
+TARGET_C_INT_WIDTH[e5500] = "32"
+MAX_ATOMIC_WIDTH[e5500] = "64"
+
 ## riscv32-unknown-linux-{gnu, musl}
 DATA_LAYOUT[riscv32] = "e-m:e-p:64:64-i64:64-i128:128-n64-S128"
 LLVM_TARGET[riscv32] = "${RUST_TARGET_SYS}"
@@ -275,6 +291,7 @@ def llvm_cpu(d):
     trans['i686'] = "i686"
     trans['i586'] = "i586"
     trans['powerpc'] = "powerpc"
+    trans['powerpc64'] = "e5500"
     trans['mips64'] = "mips64"
     trans['mips64el'] = "mips64"
 
